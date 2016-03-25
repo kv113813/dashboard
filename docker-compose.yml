@@ -1,3 +1,4 @@
+
 mongodb:
   image: mongo:latest
   container_name: mongodb
@@ -48,16 +49,15 @@ hygieia-jira-feature-collector:
   links:
   - mongodb:mongo
   - hygieia-api
-  environment:
+#  environment:
         # you can override these by creating a docker-compose.overider.yml and put in entries like this:
         #REQUIRED Entries
-  - JIRA_BASE_URL=https://jira.atlassian.com
+#  - JIRA_BASE_URL=https://jira-eng-sjc1.cisco.com/jira/
         #64-bit encoded credentials with the pattern username:password
         #on a mac you con create them with : echo "username:password" | base64
         #reference:  https://www.base64decode.org/
-  - JIRA_CREDENTIALS=username:password
-
-        #OPTIONAL - you may want ot tweek these
+#  - JIRA_CREDENTIALS=a3ZhaWJoYXc6V2Fyc2hhMTM4OQ==
+         #OPTIONAL - you may want ot tweek these
 #  - JIRA_CRON="0 * * * * *"
         #Start dates from which to begin collector data, if no other data is present - usually, a month back is appropriate (required)
 #  - JIRA_DELTA_START_DATE=2015-03-01T00:00:00.000000
@@ -77,7 +77,7 @@ hygieia-jira-feature-collector:
 #  - JIRA_SCHEDULED_PRIOR_MIN=2
         #Delta change date that modulates the collector item task - should be about as far back as possible, in ISO format (required)
 #  - JIRA_DELTA_COLLECTOR_ITEM_START_DATE=2008-01-01T00:00:00.000000
-        #Jira Connection Details
+       #Jira Connection Details
 #  - JIRA_QUERY_ENDPOINT=rest/api/2/
         #OAuth2.0 token credentials (currently not supported in this version)
 #  - JIRA_OAUTH_AUTH_TOKEN=sdfghjkl==
@@ -266,10 +266,10 @@ hygieia-udeploy-collector:
   - hygieia-api
   environment:
 #UDeploy server (required) - Can provide multiple
-  - UDEPLOY_URL:-http://udeploy.company.com
+ # - UDEPLOY_URL:-https://vm-kvaibhaw-003.cisco.com:8443
 #UDeploy user name (required)
-  - UDEPLOY_USERNAME:-bobama
+ # - UDEPLOY_USERNAME:-admin
 #UDeploy password (required)
-  - UDEPLOY_PASSWORD:-s3cr3t
+ # - UDEPLOY_PASSWORD:-admin
 #Collector schedule (required)
-#  - UDEPLOY_CRON:-0 0/5 * * * *
+  - UDEPLOY_CRON:-0 * * * * *
